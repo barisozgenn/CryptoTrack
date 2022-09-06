@@ -1,0 +1,241 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React, { useState } from 'react';
+
+import type { Node } from 'react';
+
+import type { NavigationContainer } from '@react-navigation/native';
+import {
+  SafeAreaView, 
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+  TouchableOpacity,
+  TextInput,
+  Button,
+  Alert,
+  FlatList,
+  RefreshControl,
+  Dimensions
+
+} from 'react-native';
+
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
+
+const App: () => Node = () => {
+  console.log("Baris");
+
+  {/*
+  const [txtUsername, setUsernameText] = useState("")
+  const [txtPassword, setPasswordText] = useState("")
+*/}
+  const [listResfresh, setListRefresh] = useState(false)
+
+  const _onRefreshList = () => {
+    setListRefresh(true)
+    setTimeout(() => {
+      setListRefresh(false)
+    }, 1500);
+  };
+
+  const ViewHeaderMenu=(props)=>{//props and reusable components
+   return (
+    <Button
+    title= {props.title}
+    onPress={() => Alert.alert(props.title, "username is ok?", [
+      { text: "Yes", onPress: () => console.log('yes pressed') },
+      { title: "No", onPress: () => console.log('no pressed') },
+
+    ])}/>
+   )
+  }
+  return (
+    <SafeAreaView style={[styles.backgroundStyle, styles.textStyle]}>
+      {/*<Text onPress={() => console.log('tıklandı text')} style={styles.textStyle}>
+        Baris
+        <Text style={{ color: 'green' }}> ÖZGEN</Text>
+      </Text>
+
+      <Image style={styles.localimage} source={require("./images/example-logo.png")} blurRadius={10} />
+      <Image source={{
+        uri: "https://teksgo.com/images/teksgo-web-icons/img_story_search_back.png",
+        width: 100,
+        height: 100
+      }}
+        resizeMode='contain' />
+
+      <Text numberOfLines={2} style={styles.textStyle}>lorem ipsum {'\n'}dolor set lorem ipsum dolor set lorem ipsum dolor set lorem ipsum dolor set lorem ipsum dolor set lorem ipsum dolor set</Text>
+      <TouchableHighlight onPress={() => console.log('tıklandı view')}>
+        <View style={{ width: '100%', height: 100, backgroundColor: 'gold' }}></View>
+      </TouchableHighlight>
+      <TouchableOpacity onPress={() => console.log('tıklandı view')}>
+        <Image style={styles.localimage} source={require("./images/example-logo.png")} blurRadius={2} />
+      </TouchableOpacity>
+    */}
+     {/* <Text style={styles.textStyle}>username : {txtUsername}</Text>
+
+      <TextInput
+        style={{ width: '90%', height: 50, backgroundColor: '#292929', padding: 10, margin: 10, color: '#fff', borderWidth: 1, borderColor: 'gray', borderRadius: 4 }}
+        placeholder='username'
+        placeholderTextColor="gray"
+        value={txtUsername}
+        onChangeText={setUsernameText}
+      />
+      <TextInput
+        style={{ width: '90%', height: 50, backgroundColor: '#292929', padding: 10, margin: 10, color: '#fff', borderWidth: 1, borderColor: 'gray', borderRadius: 4 }}
+        placeholder='password'
+        placeholderTextColor="gray"
+        value={txtPassword}
+        onChangeText={setPasswordText}
+        secureTextEntry={true}
+      />
+      <Button
+        title='Login'
+        onPress={() => Alert.alert("username :" + { txtUsername }, "username is ok?", [
+          { text: "Yes", onPress: () => console.log('yes pressed') },
+          { title: "No", onPress: () => console.log('no pressed') },
+
+        ])}
+      */}
+      {
+        /*
+        <ScrollView>
+        <FlatList
+          data={dataFake}
+          renderItem={({ item }) =>
+            <Text key={item.id} style={{ color: 'green', fontSize: 10, borderWidth: 2, borderColor: 'yellow', marginVertical: 10 }}> {item.title}</Text>
+          }
+          keyExtractor={item => item.id}
+          refreshControl={<RefreshControl refreshing={listResfresh} onRefresh={_onRefreshList} />}
+        />
+      </ScrollView>
+       */
+      }
+
+
+{/*<View style={styles.viewHeader} >
+<ViewHeaderMenu title={'Home'} />
+<Text>Menu 2</Text>
+<Text>Menu 3</Text>
+</View>
+<View style={styles.viewContent} >
+<Image style={styles.localimage} source={require("./images/example-logo.png")} blurRadius={0} />
+
+</View>
+<View style={styles.viewBottom} >
+
+</View> */}
+    </SafeAreaView>
+  );
+};
+const dataFake = [
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "qui est esse",
+    "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+    "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "eum et est occaecati",
+    "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
+  },
+  {
+    "userId": 1,
+    "id": 5,
+    "title": "nesciunt quas odio",
+    "body": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque"
+  },
+  {
+    "userId": 1,
+    "id": 6,
+    "title": "dolorem eum magni eos aperiam quia",
+    "body": "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae"
+  },
+  {
+    "userId": 1,
+    "id": 7,
+    "title": "magnam facilis autem",
+    "body": "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas"
+  },
+  {
+    "userId": 1,
+    "id": 8,
+    "title": "dolorem dolore est ipsam",
+    "body": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae"
+  },
+  {
+    "userId": 1,
+    "id": 9,
+    "title": "nesciunt iure omnis dolorem tempora et accusantium",
+    "body": "consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas"
+  },
+]
+const styles = StyleSheet.create({
+  backgroundStyle: {
+    flex: 1,//ekranı kapla demek
+  
+  },
+  textStyle: {
+    color: '#f4f4f4',
+    fontWeight: 'bold'
+  },
+  localimage: {
+    resizeMode: 'contain',
+    width: 100,
+    height: 100,
+    position:'absolute',
+    right:0,
+    bottom:0
+  },
+  viewHeader:{
+    flex: 1,
+    backgroundColor: 'gray',
+    justifyContent: 'space-around',//dikey ortalama
+    alignItems: 'center',//yatay ortala 
+    flexDirection:'row'
+  },
+  viewContent:{
+    flex: 4,
+    backgroundColor: 'white',
+    justifyContent: 'center',//dikey ortalama
+    alignItems: 'center'//yatay ortala 
+  },
+  viewBottom:{
+    flex: 1,
+    backgroundColor: 'gray',
+    justifyContent: 'center',//dikey ortalama
+    alignItems: 'center'//yatay ortala 
+  }
+});
+
+export default App;
